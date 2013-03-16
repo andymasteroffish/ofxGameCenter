@@ -35,6 +35,7 @@ void ofxGameCenter::setup(){
     localPlayerRank = -1;   //essentialy returning an error if this number is requested before a score has been loaded
     failedToLoadScores = false;
     isLoadingScores = false;
+    isLoadingAchievements = false;
 }
 
 //--------------------------------------------------------------
@@ -275,6 +276,93 @@ bool ofxGameCenter::reportGameCenterAchievement(float progress, string identifie
 //--------------------------------------------------------------
 bool ofxGameCenter::reportGameCenterAchievement(string identifier) {
     return reportGameCenterAchievement(100, identifier);   //100 is percentage complete
+}
+
+//--------------------------------------------------------------
+void ofxGameCenter::populateAchievements(){
+    isLoadingAchievements = true;
+    cout<<"populating achievements..."<<endl;
+    //if this is the first call, populate the list of the achievements
+    [GKAchievementDescription loadAchievementDescriptionsWithCompletionHandler: ^(NSArray *descriptions, NSError *error) {
+        if (error != nil){
+            cout<<"ERROR LOADING INFO"<<endl;
+        }if (descriptions != nil){
+            //clear out anything that might currently be in there
+            achievements.clear();
+            
+            for (int i=0; i<[descriptions count]; i++){
+                GKAchievementDescription *thisAchievement = [descriptions objectAtIndex:i];
+                
+                Achievement newAchievement;
+                newAchievement.identifier = ofxNSStringToString([thisAchievement identifier]);
+                newAchievement.name = ofxNSStringToString([thisAchievement title]);
+                newAchievement.unachievedDescription = ofxNSStringToString([thisAchievement unachievedDescription]);
+                newAchievement.achievedDescription = ofxNSStringToString([thisAchievement achievedDescription]);
+                newAchievement.isComplete = false;
+                
+                //add it to the vector
+                achievements.push_back(newAchievement);
+            }
+            
+            isLoadingAchievements = false;
+            
+            //now that we have all of the names, let's see which ones the player earned
+            getCompletedAchievements();
+        }
+    }];
+    
+}
+//--------------------------------------------------------------
+void ofxGameCenter::getCompletedAchievements(){
+    isLoadingAchievements = true;
+    cout<<"getting completed achievements..."<<endl;
+    
+    //load in a list of all of the completed achievements
+    [GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *achievements, NSError *error) {
+        if (error != nil)
+        {
+            cout<<"ERROR RETRIEVING ACHIEVEMENTS"<<endl;
+        }
+        else
+        {
+            isLoadingAchievements = false;
+        }
+        
+        if (achievements != nil)
+        {
+            cout<<"COMPLETED"<<endl;
+            for (int i=0; i<[achievements count]; i++) {
+                GKAchievement *thisAchievement = [achievements objectAtIndex:i];
+                
+                markAchievementComplete(ofxNSStringToString([thisAchievement identifier]));
+                
+            }
+            
+            isLoadingAchievements = false;
+        }
+        
+    }];
+    
+}
+
+//--------------------------------------------------------------
+void ofxGameCenter::markAchievementComplete(string identifier){
+    //go through the vector and find this identifier
+    for (int i=0; i<achievements.size(); i++){
+        if (achievements[i].identifier == identifier){
+            //mark it as complete
+            achievements[i].isComplete = true;
+            
+            return;
+        }
+    }
+    
+    cout<<"Couldn't find the achievement identifier: "<<identifier<<endl;
+}
+
+//--------------------------------------------------------------
+bool ofxGameCenter::getIsLoadingAchievements(){
+    return isLoadingAchievements;
 }
 
 //--------------------------------------------------------------

@@ -52,6 +52,15 @@ public:
     }
 };
 
+//achievement class used to store info for a single achievement
+class Achievement{
+public:
+    string identifier;
+    string name;
+    string unachievedDescription;
+    string achievedDescription;
+    bool isComplete;
+};
 
 
 
@@ -70,9 +79,20 @@ public:
     
     //------------
     //achievements
+    //These functions return true if the achievement data was able to send
+    //and false if it could not (such as if Game Center has not been authenticated)
     //------------
     bool reportGameCenterAchievement(float progress, string identifier);
     bool reportGameCenterAchievement(string identifier);
+    
+    //retrieving achievements
+    bool getIsLoadingAchievements();
+    void populateAchievements();            //fills the achievements vector with alla chievements asociated with your game
+    void getCompletedAchievements();       //gets which achievements the player has earned. Called automaticly when popuateAchievements finishes
+    void markAchievementComplete(string identifier);    //sets complete to be true for the given achievement
+    
+    bool isLoadingAchievements;
+    vector<Achievement> achievements;
     
     //------------
     //high scores - leaderboards
