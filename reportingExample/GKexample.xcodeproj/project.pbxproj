@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A6C6EBB16F4D39400BA519C /* ofxGameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0A6C6EBA16F4D39400BA519C /* ofxGameCenter.mm */; };
 		0AC63C6A16F15A7B00986583 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AC63C6916F15A7B00986583 /* GameKit.framework */; };
-		0AC63C9216F16A4500986583 /* ofxGameCenter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0AC63C9116F16A4500986583 /* ofxGameCenter.mm */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -50,9 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A6C6EB916F4D39400BA519C /* ofxGameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxGameCenter.h; path = ../../src/ofxGameCenter.h; sourceTree = "<group>"; };
+		0A6C6EBA16F4D39400BA519C /* ofxGameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ofxGameCenter.mm; path = ../../src/ofxGameCenter.mm; sourceTree = "<group>"; };
 		0AC63C6916F15A7B00986583 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		0AC63C9016F16A4500986583 /* ofxGameCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGameCenter.h; sourceTree = "<group>"; };
-		0AC63C9116F16A4500986583 /* ofxGameCenter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxGameCenter.mm; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* GKexample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GKexample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -206,8 +206,8 @@
 				E4D8936B11527B74007E1F53 /* main.mm */,
 				E4D8936C11527B74007E1F53 /* testApp.h */,
 				E4D8936D11527B74007E1F53 /* testApp.mm */,
-				0AC63C9016F16A4500986583 /* ofxGameCenter.h */,
-				0AC63C9116F16A4500986583 /* ofxGameCenter.mm */,
+				0A6C6EB916F4D39400BA519C /* ofxGameCenter.h */,
+				0A6C6EBA16F4D39400BA519C /* ofxGameCenter.mm */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -312,7 +312,7 @@
 			files = (
 				E4D8936E11527B74007E1F53 /* main.mm in Sources */,
 				E4D8936F11527B74007E1F53 /* testApp.mm in Sources */,
-				0AC63C9216F16A4500986583 /* ofxGameCenter.mm in Sources */,
+				0A6C6EBB16F4D39400BA519C /* ofxGameCenter.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
